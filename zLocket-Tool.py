@@ -1,22 +1,7 @@
-from colorama import Fore, Style, init
-import sys, time
-init(autoreset=True)
-
-rainbow = [Fore.RED, Fore.YELLOW, Fore.GREEN, Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
-
-def rainbow_text(text, delay=0.05):
-    for i, char in enumerate(text):
-        color = rainbow[i % len(rainbow)]
-        sys.stdout.write(color + char)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print()
-
 # ==================================
-rainbow_text("Crack đi mấy con chó. Enc by @minhkenx88")
 #!/usr/bin/env python
 # coding: utf-8
-# Telegram: @minhkenx88
+# Telegram: @wus_team
 # Version: 1.0.6 (Fixed)
 # Github: https://github.com/wusthanhdieu
 # Description: zLocket Tool Open Source
@@ -129,17 +114,17 @@ class zLocket:
         self.NAME_TOOL="zLocket Tool Pro"
         self.VERSION_TOOL="v1.0.6"
         self.TARGET_FRIEND_UID=target_friend_uid if target_friend_uid else None
-        self.PROXY_LIST = [
-    'https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies-http.txt', 'https://thanhdieu.com/api/list/proxyv3.txt', 'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt', 'https://raw.githubusercontent.com/themiralay/Proxy-List-World/master/data.txt', 'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/http.txt', 'https://raw.githubusercontent.com/dpangestuw/Free-Proxy/main/http_proxies.txt', 'http://api-bot.online/api/v3/proxy.txt',
-]
+        self.PROXY_LIST=[
+            # 'https://thanhdieu.com/api/list/free-proxy.txt',
+        ]
         self.print_lock=threading.Lock()
         self.successful_requests=0
         self.failed_requests=0
         self.total_proxies=0
         self.start_time=time.time()
         self.spam_confirmed=False
-        self.telegram='minhkenx88'
-        self.author='QuangMinhCrack'
+        self.telegram='wus_team'
+        self.author='WsThanhDieu'
         self.messages=[]
         self.request_timeout=15
         self.device_token=device_token
@@ -150,7 +135,7 @@ class zLocket:
         self.FIREBASE_APP_CHECK=self._load_token_()
         if os.name == "nt":
             os.system(
-                f"title 💰 {self.NAME_TOOL} {self.VERSION_TOOL} Enc by Quang Minh Dó Nhải 💰"
+                f"title 💰 {self.NAME_TOOL} {self.VERSION_TOOL} by Api.ThanhDieu.Com 💰"
          )
     def _print(self, *args, **kwargs):
         with PRINT_LOCK:
@@ -177,16 +162,16 @@ class zLocket:
             sys.stdout.write(f"\r{xColor.GREEN}{message} ✓     \n")
             sys.stdout.flush()
     def _sequence_(self, message, duration=1.5, char_set="0123456789ABCDEF"):
-        end_time=time.time() + duration
+        end_time = time.time() + duration
         while time.time() < end_time:
-            random_hex=''.join(random.choices(char_set, k=50))
+            random_hex = ''.join(random.choices(char_set, k=50))
             with PRINT_LOCK:
-                sys.stdout.write(
-                    f"\r{xColor.GREEN}[{xColor.WHITE}*{xColor.GREEN}] {xColor.CYAN}{message}: {xColor.GREEN}{random_hex}\n")
+                sys.stdout.write(f"\r{xColor.GREEN}[{xColor.WHITE}*{xColor.GREEN}] {xColor.CYAN}{message}: {xColor.GREEN}{random_hex}")
                 sys.stdout.flush()
             time.sleep(0.05)
         with PRINT_LOCK:
-            print()
+            sys.stdout.write("\n")
+            sys.stdout.flush()
     def _randchar_(self, duration=2):
         special_chars="#$%^&*()[]{}!@<>?/\\|~`-=+_"
         hex_chars="0123456789ABCDEF"
@@ -246,7 +231,7 @@ class zLocket:
             if 'token' in token_data and 'expiry' in token_data:
                 if token_data['expiry'] > time.time():
                     self._print(
-                        f"{xColor.GREEN}[+] {xColor.CYAN}Loaded token from file token.json: {xColor.YELLOW}{token_data['token'][:10] + '...' + token_data['token'][-10:]}")
+                        f"{xColor.GREEN}[+] {xColor.CYAN}Loaded token from file token.json: {xColor.YELLOW}{token_data['token'][:10] + "..." + token_data['token'][-10:]}")
                     time.sleep(0.4)
                     time_left=int(token_data['expiry'] - time.time())
                     self._print(
@@ -280,7 +265,7 @@ class zLocket:
     def fetch_token(self, retry=0, max_retries=3):
         if retry == 0:
             self._print(
-                f"{xColor.MAGENTA}[*] {xColor.CYAN}Initializing token authentication _sequence_")
+                f"{xColor.MAGENTA}[*] {xColor.CYAN}Initializing token authentication sequence")
             self._loader_("Establishing secure connection", 1)
         if retry >= max_retries:
             self._print(
@@ -315,7 +300,7 @@ class zLocket:
                 return self.fetch_token(retry + 1)
             else:
                 self._print(
-                    f"{xColor.YELLOW}[!] {xColor.RED}{data.get('msg')}")
+                    f"{xColor.YELLOW}[!] {xColor.RED}{data.get("msg")}")
                 time.sleep(1.3)
                 return self.fetch_token(retry + 1)
         except requests.exceptions.RequestException as e:
@@ -454,7 +439,7 @@ class zLocket:
         self._zlocket_panel_()
     def _input_(self, prompt_text="", section="config"):
         print(
-            f"{xColor.CYAN}┌──({xColor.NEON_GREEN}root@minhkenx88{xColor.CYAN})-[{xColor.PURPLE}{section}{xColor.CYAN}]")
+            f"{xColor.CYAN}┌──({xColor.NEON_GREEN}root@thanhdieu{xColor.CYAN})-[{xColor.PURPLE}{section}{xColor.CYAN}]")
         print(f"{xColor.CYAN}└─{xColor.RED}$ {xColor.WHITE}{prompt_text}")
         sys.stdout.write(f"  {xColor.YELLOW}>>> {xColor.RESET}")
         sys.stdout.flush()
@@ -687,7 +672,7 @@ def _banner_():
         f"{xColor.RED}██╔══╝{xColor.GREEN}░░{xColor.RED}╚════{xColor.GREEN}╝{xColor.RED}██{xColor.GREEN}║░░░░░{xColor.RED}██{xColor.GREEN}║░░{xColor.RED}██{xColor.GREEN}║{xColor.RED}██{xColor.GREEN}║░░{xColor.RED}██{xColor.GREEN}╗{xColor.RED}██{xColor.GREEN}╔═{xColor.RED}██{xColor.GREEN}╗░{xColor.RED}██{xColor.GREEN}╔══╝░░░░░{xColor.RED}██{xColor.GREEN}║░░░",
         f"{xColor.RED}███████{xColor.GREEN}╗░░░░░░{xColor.RED}███████{xColor.GREEN}╗{xColor.RED}╚█████╔{xColor.GREEN}╝{xColor.RED}╚█████╔{xColor.GREEN}╝{xColor.RED}██{xColor.GREEN}║░{xColor.RED}╚██{xColor.GREEN}╗{xColor.RED}███████{xColor.GREEN}╗░░░{xColor.RED}██{xColor.GREEN}║░░░",
         f"{xColor.RED}╚══════{xColor.GREEN}╝░░░░░░{xColor.RED}╚══════{xColor.GREEN}╝░{xColor.RED}╚════╝{xColor.GREEN}░░{xColor.RED}╚════╝{xColor.GREEN}░{xColor.RED}╚═{xColor.GREEN}╝░░{xColor.RED}╚═{xColor.GREEN}╝{xColor.RED}╚══════{xColor.GREEN}╝░░░{xColor.RED}╚═{xColor.GREEN}╝░░░",
-        f"{xColor.WHITE}[ {xColor.YELLOW}Author: @{config.author} {xColor.RED}|{xColor.WHITE} {xColor.GREEN}{config.NAME_TOOL} {config.VERSION_TOOL}{xColor.WHITE} ]"
+        f"{xColor.WHITE}[ {xColor.YELLOW}Author: @{config.author} {xColor.RED}|{xColor.WHITE} {xColor.GREEN}zLocket Tool {config.VERSION_TOOL}{xColor.WHITE} ]"
     ]
     def visible_length(text):
         clean=re.sub(r'\033\[[0-9;]+m', '', text)
@@ -730,7 +715,7 @@ def load_proxies():
         with open('proxy.txt', 'r') as f:
             file_proxies=[line.strip() for line in f if line.strip()]
             config._print(
-                f"{xColor.MAGENTA}[+] {xColor.GREEN}Found {xColor.WHITE}{len(file_proxies)} {xColor.GREEN}proxies in local storage (https://thanhdieu.com/api/list/proxyv3.txt)")
+                f"{xColor.MAGENTA}[+] {xColor.GREEN}Found {xColor.WHITE}{len(file_proxies)} {xColor.GREEN}proxies in local storage (proxy.txt)")
             config._loader_("Processing local proxies", 1)
             proxies.extend(file_proxies)
     except FileNotFoundError:
@@ -754,29 +739,31 @@ def load_proxies():
     proxies=list(set(proxies))
     if not proxies:
         config._print(
-            f"{xColor.RED}[!] {xColor.YELLOW}Critical failure: No proxies available for operation")
+            f"{xColor.RED}[!] Warning: No proxies available for operation")
         return []
     config.total_proxies=len(proxies)
     config._print(
-        f"{xColor.GREEN}[+] {xColor.CYAN}Proxy harvesting complete. {xColor.WHITE}{len(proxies)} {xColor.CYAN}unique proxies loaded")
+        f"{xColor.GREEN}[+] {xColor.CYAN}Proxy harvesting complete{xColor.WHITE} {len(proxies)} {xColor.CYAN}unique proxies loaded")
     return proxies
 def init_proxy():
-    proxies=load_proxies()
+    proxies = load_proxies()
     if not proxies:
-        config._print(
-            f"{xColor.RED}[!] {xColor.YELLOW}Operation aborted: No proxies available")
+        config._print(f"{xColor.RED}[!] {xColor.YELLOW}Note: Please add proxies to continue running the tool.")
         config._loader_("Shutting down system", 1)
         sys.exit(1)
-    config._print(
-        f"{xColor.MAGENTA}[*] {xColor.CYAN}Randomizing proxy _sequence_ for optimal distribution")
+    if len(proxies) < 200:
+        config._print(f"{xColor.RED}[!] {xColor.YELLOW}Warning: Insufficient proxies ({len(proxies)} proxies found, minimum 200 required)")
+        config._print(f"{xColor.RED}[!] Please add more proxies to proxy.txt or check proxy sources")
+        config._loader_("Shutting down system", 1)
+        sys.exit(1)
+    config._print(f"{xColor.MAGENTA}[*] {xColor.CYAN}Randomizing proxy sequence for optimal distribution")
     random.shuffle(proxies)
     config._loader_("Optimizing proxy rotation algorithm", 1)
-    proxy_queue=Queue()
+    proxy_queue = Queue()
     for proxy in proxies:
         proxy_queue.put(proxy)
-    num_threads=len(proxies)
-    config._print(
-        f"{xColor.GREEN}[+] {xColor.CYAN}Proxy system initialized with {xColor.WHITE}{num_threads} {xColor.CYAN}endpoints")
+    num_threads = len(proxies)
+    config._print(f"{xColor.GREEN}[+] {xColor.CYAN}Proxy system initialized with {xColor.WHITE}{num_threads} {xColor.CYAN}endpoints")
     return proxy_queue, num_threads
 def format_proxy(proxy_str):
     if not proxy_str:
@@ -1131,7 +1118,7 @@ def main():
             f"\n{xColor.RED}[!] {xColor.YELLOW}User interrupt detected")
     time.sleep(0.5)
     end_time=time.time()
-    config._sequence_("Destroying traces", duration=2)
+    config._sequence_("Destroying Terminal", duration=2)
     config._loader_("Executing graceful shutdown", 2)
     elapsed=end_time - config.start_time
     hours, remainder=divmod(int(elapsed), 3600)
@@ -1140,12 +1127,9 @@ def main():
     config._print(
         f"{xColor.GREEN}[+] {xColor.CYAN}Operation complete. Runtime: {xColor.WHITE}{hours:02d}:{minutes:02d}:{seconds:02d}")
     config._print(f"{xColor.CYAN}{Style.BRIGHT}{'=' * 65}{Style.RESET_ALL}")
-    config._blinking_("CONNECTION TERMINATED", blinks=3)
+    config._blinking_("TOOL HAS BEEN SHUT DOWN", blinks=20)
     sys.stdout.flush()
+    os._exit(0)
 if __name__ == "__main__":
     config=zLocket()
-    main()
-
-if __name__ == "__main__" or __name__ == "zlocket":
-    config = zLocket()
     main()
